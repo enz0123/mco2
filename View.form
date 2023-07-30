@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="View">
+  <grid id="27dc6" binding="container" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="594" height="456"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="2239b" binding="mainMenu" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="cc9f1" binding="mainBtnContainer" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="bfc17" class="javax.swing.JButton" binding="createVendingMachineButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Create Vending Machine"/>
+                </properties>
+              </component>
+              <component id="da2f0" class="javax.swing.JButton" binding="testVendingMachineButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Test Vending Machine"/>
+                </properties>
+              </component>
+              <component id="e114" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Exit"/>
+                </properties>
+              </component>
+              <grid id="14157" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints/>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="f7ba7" binding="selectCreate" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8f502" class="javax.swing.JLabel">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="Select which type of vending machine to create:"/>
+            </properties>
+          </component>
+          <grid id="59dd0" binding="selectButtonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="605de" class="javax.swing.JButton" binding="regularButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Regular"/>
+                </properties>
+              </component>
+              <component id="b680b" class="javax.swing.JButton" binding="specialButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Special"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="56d52" binding="testMenu" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e82ea" class="javax.swing.JLabel">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="Select which feature to test:"/>
+            </properties>
+          </component>
+          <grid id="ba47f" binding="backToMainMenuContainer" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="8de83" class="javax.swing.JButton" binding="backToMainMenuButton" default-binding="true">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <text value="Back to Main Menu"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="6c9bc" binding="testMenuBtnContainer" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a6e1b" class="javax.swing.JButton" binding="vendingFeaturesButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Vending Features"/>
+                </properties>
+              </component>
+              <component id="fe11f" class="javax.swing.JButton" binding="maintenanceFeaturesButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Maintenance Features"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="d27e0" binding="vending" layout-manager="GridBagLayout">
+        <constraints>
+          <card name="Card4"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="4d67a" binding="itemSlotsContainer" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="2.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="ca942" binding="totalReceivedPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="e455c" class="javax.swing.JLabel" binding="receivedMoney">
+                <constraints border-constraint="North"/>
+                <properties>
+                  <text value="Total:  0"/>
+                </properties>
+              </component>
+              <grid id="ed1a3" binding="insertMoneyPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2cbdd" class="javax.swing.JButton" binding="₱1CoinButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱1 Coin"/>
+                    </properties>
+                  </component>
+                  <component id="3ce0e" class="javax.swing.JButton" binding="₱5CoinButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱5 coin"/>
+                    </properties>
+                  </component>
+                  <component id="a8101" class="javax.swing.JButton" binding="₱10CoinButton" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱10 coin"/>
+                    </properties>
+                  </component>
+                  <component id="6cc5c" class="javax.swing.JButton" binding="₱20CoinButton" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱20 coin"/>
+                    </properties>
+                  </component>
+                  <component id="48bb" class="javax.swing.JButton" binding="₱50BillButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱50 bill"/>
+                    </properties>
+                  </component>
+                  <component id="73992" class="javax.swing.JButton" binding="₱100BillButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="₱100 bill"/>
+                    </properties>
+                  </component>
+                  <component id="289c3" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Cancel"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="91a70" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="9ec63" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="South"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="a6f3c" class="javax.swing.JButton" binding="backToFeaturesButton" default-binding="true">
+                    <constraints border-constraint="West"/>
+                    <properties>
+                      <text value="Back to Features"/>
+                    </properties>
+                  </component>
+                  <vspacer id="a068">
+                    <constraints border-constraint="North"/>
+                  </vspacer>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="5d5fd" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="c5446" binding="bottomRight" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="South"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="fc49" binding="otherFeatures" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints border-constraint="East"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="d2e20" class="javax.swing.JButton" binding="showSummaryButton" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <text value="Show Summary"/>
+                        </properties>
+                      </component>
+                      <component id="a051d" class="javax.swing.JButton" binding="collectMoneyButton" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <text value="Collect Money"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <vspacer id="d3ed1">
+                <constraints border-constraint="Center"/>
+              </vspacer>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
