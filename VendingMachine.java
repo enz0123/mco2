@@ -1,10 +1,9 @@
 import java.util.Scanner;
 public class VendingMachine {
     private itemSlot[] itemSlot;
-    private itemSlot currentItem;
     private moneyHolder register;
     private double totalReceived = 0;
-	
+
     public VendingMachine()
     {
         itemSlot = new itemSlot[8];
@@ -67,110 +66,14 @@ public class VendingMachine {
     public int checkTransaction(int index){
         double change = totalReceived - itemSlot[index].getPrice();
         if(totalReceived < itemSlot[index].getPrice()){
-            System.out.println("Error. Not enough money. Returning money...");
-           /* while(totalReceived > 0){
-                if(totalReceived >= 100 && register.getNumofHundreds() > 0){
-                    System.out.println("Dispensed hundred bill");
-                    register.removeMoney(6);
-                    totalReceived -= 100;
-                }
-                else if (totalReceived >= 50 && register.getNumofFifties() > 0){
-                    System.out.println("Dispensed fifty bill");
-                    register.removeMoney(5);
-                    totalReceived -= 50;
-                }
-                else if(totalReceived >= 20 && register.getNumofTwenties() > 0){
-                    System.out.println("Dispensed twenty coin");
-                    register.removeMoney(4);
-                    totalReceived -= 20;
-                }
-                else if(totalReceived >= 10 && register.getNumofTens() > 0){
-                    System.out.println("Dispensed 10 peso coin");
-                    register.removeMoney(3);
-                    totalReceived -= 10;
-                }
-                else if(totalReceived >= 5 && register.getNumofFives() > 0){
-                    System.out.println("Dispensed 5 peso coin");
-                    register.removeMoney(2);
-                    totalReceived -= 5;
-                }
-                else{
-                    System.out.println("Dispensed 1 peso coin");
-                    totalReceived -= 1;
-                }
-            }*/
             return 1;
         }
         else if(!checkChange(index)){
-          /*  System.out.println("Error. Not enough change. Returning money...");
-            while(totalReceived > 0){
-                if(totalReceived >= 100 && register.getNumofHundreds() > 0){
-                    System.out.println("Dispensed hundred bill");
-                    register.removeMoney(6);
-                    totalReceived -= 100;
-                }
-                else if (totalReceived >= 50 && register.getNumofFifties() > 0){
-                    System.out.println("Dispensed fifty bill");
-                    register.removeMoney(5);
-                    totalReceived -= 50;
-                }
-                else if(totalReceived >= 20 && register.getNumofTwenties() > 0){
-                    System.out.println("Dispensed twenty coin");
-                    register.removeMoney(4);
-                    totalReceived -= 20;
-                }
-                else if(totalReceived >= 10 && register.getNumofTens() > 0){
-                    System.out.println("Dispensed 10 peso coin");
-                    register.removeMoney(3);
-                    totalReceived -= 10;
-                }
-                else if(totalReceived >= 5 && register.getNumofFives() > 0){
-                    System.out.println("Dispensed 5 peso coin");
-                    register.removeMoney(2);
-                    totalReceived -= 5;
-                }
-                else{
-                    System.out.println("Dispensed 1 peso coin");
-                    totalReceived -= 1;
-                }
-            }*/
             return 2;
         }
 
         else{
             System.out.println("\nGiving change of " + change);
-            /*while(change > 0){
-                if(change >= 100 && register.getNumofHundreds() > 0){
-                    System.out.println("Dispensed hundred bill");
-                    register.removeMoney(6);
-                    change -= 100;
-                }
-                else if (change >= 50 && register.getNumofFifties() > 0){
-                    System.out.println("Dispensed fifty bill");
-                    register.removeMoney(5);
-                    change -= 50;
-                }
-                else if(change >= 20 && register.getNumofTwenties() > 0){
-                    System.out.println("Dispensed twenty coin");
-                    register.removeMoney(4);
-                    change -= 20;
-                }
-                else if(change >= 10 && register.getNumofTens() > 0){
-                    System.out.println("Dispensed 10 peso coin");
-                    register.removeMoney(3);
-                    change -= 10;
-                }
-                else if(change >= 5 && register.getNumofFives() > 0){
-                    System.out.println("Dispensed 5 peso coin");
-                    register.removeMoney(2);
-                    change -= 5;
-                }
-                else{
-                    System.out.println("Dispensed 1 peso coin");
-                    change -= 1;
-                }
-            }
-            totalReceived = 0;*/
             return 0;
         }
     }
@@ -245,6 +148,8 @@ public class VendingMachine {
         }
     }
 
+    public moneyHolder getRegister(){return this.register;}
+
     private boolean checkChange(int index) {
         double tempTotal = totalReceived - itemSlot[index].getPrice();
         int check = 1;
@@ -301,26 +206,9 @@ public class VendingMachine {
     public void dispenseItem(int index){
         this.itemSlot[index].dispenseThis();
         this.itemSlot[index].addSales();
-        System.out.println("Stock is " + this.getItemStock(index));
+        System.out.println(this.itemSlot[index].getName() + " Stock is: " + this.getItemStock(index));
     }
 
-	/**
-	* Prints out the info regarding the items in the vending machine about the amount of items sold and the amount of money made
-	*/
-    public void printSummary(){
-        double total = 0;
-        System.out.println("Summary:");
-        for(int ctr = 0; ctr < 8; ctr++){
-            total = total + itemSlot[ctr].getTotalSales();
-            System.out.println(itemSlot[ctr].getName() + ": " + itemSlot[ctr].getNumSold() + " sold, " + itemSlot[ctr].getTotalSales() + " pesos total");
-            System.out.println("Initial stock: " + itemSlot[ctr].getInitStock() + ", Current stock: " + itemSlot[ctr].getStock() + "\n");
-        }
-
-        System.out.println("\nTotal Sales: " + total + " pesos\n");
-
-
-        //"there should be a display of the starting inventory and the ending inventory from the last restocking"
-    }
 
 	/**
 	: @param price The price the user wants to set for the item
@@ -341,17 +229,11 @@ public class VendingMachine {
             itemSlot[ctr].setInitStock(itemSlot[ctr].getStock());
         }
     }
-	
+
 	/**
 	* Tells the user how much money the vending machine has created
 	*/
     public String collectMoney(){
 		return register.collectMoney();
 	}
-
-	/**
-	* Tells the user that the money in the vending machine has been replinshed
-	*/
-    public void replenishMoney(Money money){
-        register.addMoney(money);}
 }

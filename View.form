@@ -57,6 +57,7 @@
           <component id="8f502" class="javax.swing.JLabel">
             <constraints border-constraint="North"/>
             <properties>
+              <horizontalAlignment value="0"/>
               <text value="Select which type of vending machine to create:"/>
             </properties>
           </component>
@@ -128,7 +129,8 @@
           </grid>
         </children>
       </grid>
-      <grid id="d27e0" binding="vending" layout-manager="GridBagLayout">
+      <grid id="d27e0" binding="vending" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card4"/>
         </constraints>
@@ -139,7 +141,6 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="2.0" weighty="0.0"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -148,7 +149,6 @@
           <grid id="ca942" binding="totalReceivedPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -156,6 +156,8 @@
               <component id="e455c" class="javax.swing.JLabel" binding="receivedMoney">
                 <constraints border-constraint="North"/>
                 <properties>
+                  <font size="20"/>
+                  <horizontalAlignment value="0"/>
                   <text value="Total:  0"/>
                 </properties>
               </component>
@@ -228,7 +230,6 @@
           <grid id="91a70" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -249,12 +250,30 @@
                   </vspacer>
                 </children>
               </grid>
+              <grid id="9832f" binding="customizableItemPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="5b75b" class="javax.swing.JButton" binding="customizePizzaButton" default-binding="true">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <text value="Customize Pizza"/>
+                    </properties>
+                  </component>
+                  <component id="fb301" class="javax.swing.JLabel" binding="pizzaPictureLabel">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
           <grid id="5d5fd" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -279,6 +298,12 @@
                         <constraints/>
                         <properties>
                           <text value="Collect Money"/>
+                        </properties>
+                      </component>
+                      <component id="f301c" class="javax.swing.JButton" binding="registerContentButton" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <text value="Register Content"/>
                         </properties>
                       </component>
                     </children>

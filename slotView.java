@@ -21,6 +21,7 @@ public class slotView extends JPanel {
     public slotView(int slotNum, String name, double calories, double price){
         super(new BorderLayout());
         this.name = new JLabel(name);
+        this.name.setHorizontalAlignment(SwingConstants.CENTER);
         this.pictures = new JPanel(new GridLayout(2,5));
         this.info = new JPanel(new BorderLayout());
         this.stock = new JLabel("Stock: 0");
@@ -73,5 +74,20 @@ public class slotView extends JPanel {
 
     public void addDispenseListener(ActionListener listener){
         this.dispense.addActionListener(listener);
+    }
+
+    public void setButtonName(String buttonName){
+        this.restock.setName(buttonName);
+        this.setPrice.setName(buttonName);
+    }
+
+    public void setDispenseVisible(boolean set){dispense.setVisible(set);}
+
+    public void addPicture(JLabel picture){pictures.add(picture);}
+
+    public void clearPictures(){pictures.removeAll();}
+
+    public void setBlackContainer(){
+        this.pictures.setBackground(Color.black);
     }
 }
