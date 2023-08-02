@@ -149,13 +149,14 @@ public class Controller {
             else
                 switch(((SpecialVendingMachine) vendingMachine).makePizza(view.getTotalAmounts())){ //Tells whether a pizza should be made or if transaction pushes through
                     case 1 -> { //This case shows the progress bar for making of the pizza and updates labels
-                        view.showProgressScreen(totalAmounts);
+                        view.showProgressScreen(totalAmounts, vendingMachine.getChangeLog());
                         for(int ctr = 0; ctr < 8; ctr++)
                             view.setStockText("Stock: " + vendingMachine.getItemStock(ctr), ctr);
                         for(int ctr = 0; ctr < 3; ctr++)
                             view.setExtraStockText("Stock: " + ((SpecialVendingMachine) vendingMachine).getExtraItemStock(ctr), ctr);
                         view.disposeCustomizeWindow();
                         view.setTotalLabel("Total: " + vendingMachine.getTotalReceived());
+                        vendingMachine.resetChangeLog();
                     }
                     case 2 -> JOptionPane.showMessageDialog(null, "Error. Not enough change in machine", "Error", JOptionPane.ERROR_MESSAGE);
                     case 3 -> JOptionPane.showMessageDialog(null, "Not enough money inserted.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -326,6 +327,8 @@ public class Controller {
                         view.setStockText("Stock: " + vendingMachine.getItemStock(index), index);
                         view.setTotalLabel("Total: " + vendingMachine.getTotalReceived());
                         view.disposeCustomizeWindow();
+                        view.showChangeScreen(vendingMachine.getChangeLog(), index, (JButton) e.getSource());
+                        vendingMachine.resetChangeLog();
                     }
                 }
 
@@ -383,6 +386,8 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             vendingMachine.giveBackMoney();
+            view.showCancelResultScreen(vendingMachine.getChangeLog());
+            vendingMachine.resetChangeLog();
             view.setTotalLabel("Total: " + vendingMachine.getTotalReceived());
         }
     }

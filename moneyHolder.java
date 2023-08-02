@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+
+/**
+ * Class responsible for storing denominations of money and managing them
+ */
 public class moneyHolder {
     private ArrayList<Money> ones = new ArrayList<Money>();
     private ArrayList<Money> fives = new ArrayList<Money>();
@@ -7,14 +11,48 @@ public class moneyHolder {
     private ArrayList<Money> fifties = new ArrayList<Money>();
     private ArrayList<Money> hundreds = new ArrayList<Money>();
 
+    /**
+     * Gets number of one peso coins in register
+     * @return number of one peso coins
+     */
     public int getNumofOnes(){ return ones.size();}
+
+    /**
+     * Gets number of five peso coins in register
+     * @return number of five peso coins
+     */
     public int getNumofFives(){return fives.size();}
+
+    /**
+     * Gets number of ten peso coins in register
+     * @return number of ten peso coins
+     */
     public int getNumofTens(){return tens.size();}
+
+    /**
+     * Gets number of twenty peso coins in register
+     * @return number of twenty peso coins
+     */
     public int getNumofTwenties(){return twenties.size();}
+
+    /**
+     * Gets number of fifty peso bills in register
+     * @return number of fifty peso bills
+     */
     public int getNumofFifties(){return fifties.size();}
+
+    /**
+     * Gets number of hundred peso bills in register
+     * @return number of hundred peso bills in register
+     */
     public int getNumofHundreds(){return hundreds.size();}
+
+    /**
+     * Inserts money into a compartment in register
+     * @param money - money inserted
+     */
     public void addMoney(Money money){
-        switch(money.getAmount()){
+        switch(money.getAmount()){ //inserts money in different compartment based on its value
             case 1 -> ones.add(money);
             case 5 -> fives.add(money);
             case 10 -> tens.add(money);
@@ -24,6 +62,10 @@ public class moneyHolder {
         }
     }
 
+    /**
+     * Removes money from register
+     * @param choice - value determines which denomination to remove
+     */
     public void removeMoney(int choice){
         switch(choice){
             case 1: ones.remove(ones.size() - 1); break;
@@ -36,6 +78,10 @@ public class moneyHolder {
 
     }
 
+    /**
+     * Removes every denomination of money from register
+     * @return text containing information on number of denominations removed
+     */
     public String collectMoney(){
         int total = 0;
         int numOnes = 0;

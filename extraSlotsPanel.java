@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Variation of the CustomizeSlotPanel found in customizing display
+ */
 public class extraSlotsPanel extends CustomizeSlotPanel {
 
     private JPanel infoPanel;
@@ -8,6 +11,9 @@ public class extraSlotsPanel extends CustomizeSlotPanel {
     private JLabel calories;
     private JLabel price;
 
+    /**
+     * Initializes elements of the class
+     */
     public extraSlotsPanel(){
         super();
 
@@ -22,11 +28,5 @@ public class extraSlotsPanel extends CustomizeSlotPanel {
         infoPanel.add(price);
         add(infoPanel, BorderLayout.SOUTH);
     }
-
-    public void setStock(String text){stock.setText(text);}
-
-    public void setCalories(String text){calories.setText(text);}
-    public void setPrice(String text){price.setText(text);}
-
 
 }

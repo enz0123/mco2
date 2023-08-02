@@ -1,3 +1,6 @@
+/**
+ * Class responsible for managing the items within it and communicating information with the vending machine
+ */
 public class itemSlot {
     private String name;
     private item[] currentItems;
@@ -8,6 +11,12 @@ public class itemSlot {
     private double totalSales = 0;
     private int initStock = 0;
 
+    /**
+     * Initializes attributes of the item slot
+     * @param name - name of items inside item slot
+     * @param price - price of items inside item slot
+     * @param calories - calories of items inside item slot
+     */
     public itemSlot(String name, double price, double calories)
     {
         this.name = name;
@@ -16,85 +25,101 @@ public class itemSlot {
         this.currentItems = new item[10];
     }
 
+    /**
+     * Sets initial stock of item slot
+     * @param initStock - new initial stock of item slot
+     */
     public void setInitStock(int initStock){
         this.initStock = initStock;
     }
 
+    /**
+     * Gets initial stock of item slot
+     * @return initial stock of item slot
+     */
     public int getInitStock(){
         return this.initStock;
     }
 
-	/**
-	* @return the double value of the variable "price"
-	*/
+    /**
+     * Gets price of items in item slot
+     * @return price of items
+     */
     public double getPrice()
     {
         return this.price;
     }
 
-	/**
-	* @return the double value of the variable "calories"
-	*/
+    /**
+     * Gets calories of items in item slot
+     * @return calories of items
+     */
     public double getCalories()
     {
         return this.calories;
     }
 
-	/**
-	* @return the int value of the variable "stock"
-	*/
+    /**
+     * Gets stock of items in item slot
+     * @return current stock of item slot
+     */
     public int getStock()
     {
         return this.stock;
     }
-	
-	/**
-	* @return the String value of the variable "name"
-	*/
+
+    /**
+     * Gets name of items in item slot
+     * @return name of items contained in item slot
+     */
     public String getName()
     {
         return this.name;
     }
 
-	/**
-	* @return the int value of the variable "numSold"
-	*/
+    /**
+     * Gets number of items sold from item slot
+     * @return number of items sold
+     */
     public int getNumSold() {return this.numSold; }
 
-	/**
-	* @return the double value of the variable "totalSales"
-	*/
+    /**
+     * Gets total sales of items in item slot
+     * @return total sales
+     */
     public double getTotalSales() {return this.totalSales; }
 
-	/**
-	* Sets the variable "price" to the value given in the parameter
-	* @param price The price of the item 
-	*/
+    /**
+     * Sets price for items in item slot
+     * @param price - new price for items
+     */
     public void setPrice(double price)
     {
         this.price = price;
     }
 
+    /**
+     * Adds one item in item slot
+     */
     public void addStock()
     {
         this.currentItems[this.stock] = new item(this.name);
         this.stock = this.stock + 1;
     }
 
-	/**
-	* Adds to the value of the variable "numSold" by 1 and adds the variable "price" to the variable "totalSales"
-	*/
+    /**
+     * Increments number of items sold and increases total sales of items in item slot
+     */
     public void addSales(){
         this.numSold = this.numSold + 1;
         this.totalSales = this.totalSales + this.price;
     }
-	
-	/**
-	* Reduces the value of the variable "stock" by 1 and prints the variable "name" stating it has been dispensed
-	*/
+
+    /**
+     * Removes item from item slot and decreases stock
+     */
     public void dispenseThis()
     {
-        System.out.println("1 " + this.currentItems[stock - 1].getName() + " has been dispensed.");
         currentItems[stock-1] = null;
         this.stock = this.stock - 1;
     }

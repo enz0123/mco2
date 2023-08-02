@@ -1,9 +1,16 @@
-import java.util.Scanner;
+/**
+ * Class for regular vending machine
+ */
 public class VendingMachine {
     private itemSlot[] itemSlot;
     private moneyHolder register;
     private double totalReceived = 0;
+    private String changeLog = "Dispensed change: ";
 
+
+    /**
+     * Instantiates new item slots and the register
+     */
     public VendingMachine()
     {
         itemSlot = new itemSlot[8];
@@ -19,36 +26,87 @@ public class VendingMachine {
         register = new moneyHolder();
     }
 
+    /**
+     * Gets the change log
+     * @return changeLog - information on change being displayed
+     */
+
+    public String getChangeLog(){return this.changeLog;}
+
+    /**
+     * Gets item name of specified slot
+     * @param itemSlot - index of item slot
+     * @return item name of item slot
+     */
     public String getItemName(int itemSlot){
         return this.itemSlot[itemSlot].getName();
     }
 
+    /**
+     * Resets the value of total amount of money received
+     */
     public void resetTotalReceived(){this.totalReceived = 0;}
 
+    /**
+     * Gets number of items sold for specified slot
+     * @param itemSlot - index of item slot requested
+     * @return number of items sold of item slot
+     */
     public int getNumSold(int itemSlot){
         return this.itemSlot[itemSlot].getNumSold();
     }
 
+    /**
+     * Gets sales of items for specified slot
+     * @param itemSlot - index of requested item slot
+     * @return number of items for specified slot
+     */
     public double getSales(int itemSlot){return this.itemSlot[itemSlot].getTotalSales();}
 
+    /**
+     * Gets initial stock of item slot requested
+     * @param itemSlot - index of item slot requested
+     * @return initial stock of item slot requested
+     */
     public int getInitStock(int itemSlot){return this.itemSlot[itemSlot].getInitStock();}
+
+    /**
+     * Gets current stock of item slot requested
+     * @param itemSlot - index of item slot requested
+     * @return current stock of item slot requested
+     */
     public int getItemStock(int itemSlot){
         return this.itemSlot[itemSlot].getStock();
     }
+
+    /**
+     * Gets calories of item slot requested
+     * @param itemSlot - index of item slot requested
+     * @return calories of item slot requested
+     */
     public double getItemCalories(int itemSlot){
         return this.itemSlot[itemSlot].getCalories();
     }
 
+    /**
+     * Gets item price of item slot requested
+     * @param itemSlot - index of item slot requested
+     * @return item price of item slot requested
+     */
     public double getItemPrice(int itemSlot){
         return this.itemSlot[itemSlot].getPrice();
     }
 
+    /**
+     * Gets total received money in the vending machine
+     * @return total received money
+     */
     public double getTotalReceived(){return this.totalReceived;}
 
-	/**
-	* Prints out all the names, stock, and calories of the items in the vending machine
-	*/
-
+    /**
+     * Adds the value of inserted money to total received money and adds the money itself to the cash register
+     * @param money - money being inserted
+     */
     public void addMoney(Money money)
     {
         switch(money.getAmount()){
@@ -62,95 +120,125 @@ public class VendingMachine {
         register.addMoney(money);
     }
 
-
+    /**
+     * Verifies if transaction is to be pushed through
+     * @param index - index of item to be dispensed
+     * @return Outcome of verification
+     */
     public int checkTransaction(int index){
         double change = totalReceived - itemSlot[index].getPrice();
         if(totalReceived < itemSlot[index].getPrice()){
-            return 1;
+            return 1; //returned if not enough money was inserted
         }
         else if(!checkChange(index)){
-            return 2;
+            return 2; //returned if change isn't available
         }
 
         else{
-            System.out.println("\nGiving change of " + change);
-            return 0;
+            return 0; //returned if transaction pushes through
         }
     }
 
+    /**
+     * Removes money from register to give change. It is assumed that denominations are enough to give change
+     * @param index - index of item to be dispensed
+     */
     public void giveChange(int index){
         double change = totalReceived - itemSlot[index].getPrice();
+
+        //Continuously removes money and decreases change until enough of change has been given (change = 0)
+        //Information is also added to change log for each denomination of money removed
         while(change > 0){
             if(change >= 100 && register.getNumofHundreds() > 0){
-                System.out.println("Dispensed hundred bill");
+                changeLog = changeLog + "\n100 bill";
                 register.removeMoney(6);
                 change -= 100;
             }
             else if (change >= 50 && register.getNumofFifties() > 0){
-                System.out.println("Dispensed fifty bill");
+                changeLog = changeLog + "\n50 bill";
                 register.removeMoney(5);
                 change -= 50;
             }
             else if(change >= 20 && register.getNumofTwenties() > 0){
-                System.out.println("Dispensed twenty coin");
+                changeLog = changeLog + "\n20 coin";
                 register.removeMoney(4);
                 change -= 20;
             }
             else if(change >= 10 && register.getNumofTens() > 0){
-                System.out.println("Dispensed 10 peso coin");
+                changeLog = changeLog + "\n10 coin";
                 register.removeMoney(3);
                 change -= 10;
             }
             else if(change >= 5 && register.getNumofFives() > 0){
-                System.out.println("Dispensed 5 peso coin");
+                changeLog = changeLog + "\n5 coin";
                 register.removeMoney(2);
                 change -= 5;
             }
             else{
-                System.out.println("Dispensed 1 peso coin");
+                changeLog = changeLog + "\n1 coin";
                 change -= 1;
             }
         }
-        totalReceived = 0;
-        dispenseItem(index);
+        totalReceived = 0; //resets total received
+        dispenseItem(index); //dispenses item;
     }
+
+    /**
+     * Resets change log
+     */
+    public void resetChangeLog(){changeLog = "Dispensed change: ";}
+
+    /**
+     * Removes money from register to give back money if transaction is cancelled. Register is assumed to have enough change.
+     */
     public void giveBackMoney(){
+        //Continuously removes money and decreases change until enough of change has been given (totalReceived = 0)
         while(totalReceived > 0){
             if(totalReceived >= 100 && register.getNumofHundreds() > 0){
-                System.out.println("Dispensed 100 peso bill");
+                changeLog = changeLog + "\n100 bill";
                 register.removeMoney(6);
                 totalReceived -= 100;
             }
             else if (totalReceived >= 50 && register.getNumofFifties() > 0){
-                System.out.println("Dispensed 50 peso bill");
+                changeLog = changeLog + "\n50 bill";
                 register.removeMoney(5);
                 totalReceived -= 50;
             }
             else if(totalReceived >= 20 && register.getNumofTwenties() > 0){
-                System.out.println("Dispensed 20 peso coin");
+                changeLog = changeLog + "\n20 coin";
                 register.removeMoney(4);
                 totalReceived -= 20;
             }
             else if(totalReceived >= 10 && register.getNumofTens() > 0){
-                System.out.println("Dispensed 10 peso coin");
+                changeLog = changeLog + "\n10 coin";
                 register.removeMoney(3);
                 totalReceived -= 10;
             }
             else if(totalReceived >= 5 && register.getNumofFives() > 0){
-                System.out.println("Dispensed 5 peso coin");
+                changeLog = changeLog + "\n5 coin";
                 register.removeMoney(2);
                 totalReceived -= 5;
             }
             else{
-                System.out.println("Dispensed 1 peso coin");
+                changeLog = changeLog + "\n1 coin";
                 totalReceived -= 1;
             }
         }
     }
 
+    /**
+     * Gets the register of the vending machine
+     * @return register of the vending machine
+     */
     public moneyHolder getRegister(){return this.register;}
 
+    /**
+     * Checks if the vending machine can provide enough change
+     * @param index - index of the item to be dispensed
+     * @return true if enough change, false otherwise
+     */
     private boolean checkChange(int index) {
+        //variables are temporarily values to simulate giving change
         double tempTotal = totalReceived - itemSlot[index].getPrice();
         int check = 1;
         int ones = register.getNumofOnes();
@@ -162,6 +250,7 @@ public class VendingMachine {
 
         System.out.println(ones);
 
+        //Continuously removes money and decreases change to see if giving change is possible
         while (tempTotal > 0 && check == 1) {
             if (tempTotal >= 100 && hundreds > 0) {
                 hundreds -= 1;
@@ -183,7 +272,7 @@ public class VendingMachine {
                 tempTotal -= 1;
             }
             else{
-                check = 0;
+                check = 0; //if it reaches this point, it signifies that change can't be given
             }
 
             if(check == 0){
@@ -195,45 +284,48 @@ public class VendingMachine {
         return true;
     }
 
-
-	/**
-	* Gives the change to the user depending on much money they gave
-	*/
-
-	/**
-	* Reduces the stock of the selected item by 1 and add the price of the item to the amount of sales regarding the amount sold and money made
-	*/
+    /**
+     * Dispenses item requested
+     * @param index - index of item requested
+     */
     public void dispenseItem(int index){
         this.itemSlot[index].dispenseThis();
         this.itemSlot[index].addSales();
-        System.out.println(this.itemSlot[index].getName() + " Stock is: " + this.getItemStock(index));
     }
 
 
-	/**
-	: @param price The price the user wants to set for the item
-	* Allows the user to set the price of an item in the vending machine
-	*/
+    /**
+     * Sets price for requested item
+     * @param index - index of requested item
+     * @param price - new price for item
+     */
     public void setPrice(int index, double price){
         itemSlot[index].setPrice(price);
     }
 
-	/**
-	* Allows the user to add stock to an item in the vending machine
-	* @return false if the amount of items in stock plus the value of the paramenter is greater than 10, true if the parameter doesn't meet the conditions of the if statement
-	*/
+    /**
+     * Adds one item to item slot
+     * @param index - index of item to be restocked
+     */
     public void stockItem(int index){
         itemSlot[index].addStock();
-        for(int ctr = 0; ctr < 8; ctr++){
+        for(int ctr = 0; ctr < 8; ctr++){ //resets sales, since summary of transactions only goes back to last restocking
             itemSlot[ctr].resetSales();
             itemSlot[ctr].setInitStock(itemSlot[ctr].getStock());
         }
     }
 
-	/**
-	* Tells the user how much money the vending machine has created
-	*/
+    /**
+     * Removes all money from the cash register
+     * @return Text containing information about all collected money
+     */
     public String collectMoney(){
 		return register.collectMoney();
 	}
+
+    /**
+     * Updates change feedback log
+     * @param add - new information to be added to the log
+     */
+    public void addChangeLog(String add){this.changeLog = this.changeLog + add;}
 }
